@@ -1,0 +1,111 @@
+:root {
+  --grey-color: #333333;
+  --blue-color: #0764bc;
+  --button-hover-grey: #4f4f4f;
+  --equals-hover-color: #226dff;
+  --main-bg: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+}
+
+.calculator-body {
+  width: 370px;
+  height: 550px;
+  padding: 6px;
+  display: grid;
+  grid-template-rows: 4fr 7fr;
+  border-radius: 0.75rem;
+  background-color: var(--grey-color);
+}
+
+.display-section > div {
+  color: #fff;
+  text-align: right;
+  padding: 0 1rem;
+}
+
+.display-section .primary-display {
+  height: 50%;
+  font-size: 2.3rem;
+  font-weight: 500;
+}
+
+.display-section .secondary-display {
+  height: 50%;
+  padding-top: 1.5rem;
+  font-size: 1.5rem;
+  color: #aaa;
+}
+
+.keys-section > div {
+  height: calc(100% / 5);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.keys-section button {
+  outline: 0;
+  border: 1px solid var(--grey-color);
+  cursor: pointer;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 500;
+  background-color: #000;
+}
+
+.keys-section button:hover {
+  background-color: var(--button-hover-grey);
+}
+
+.keys-section button:active {
+  background-color: #5f5f5f;
+}
+
+.keys-section .row-5 button.number {
+  border-bottom-left-radius: 0.75rem;
+}
+
+.keys-section .equals {
+  color: #000;
+  border-bottom-right-radius: 0.75rem;
+  background-color: var(--blue-color);
+}
+
+.keys-section .equals:hover {
+  background-color: var(--equals-hover-color);
+}
+
+.keys-section .equals:active {
+  background-color: #4785ff;
+}
+
+@media (max-width: 426px) {
+  .calculator-body {
+    width: 100vw;
+    height: 100vh;
+  }
+}
