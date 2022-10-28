@@ -5,6 +5,7 @@ const primaryDisplay = document.querySelector(".primary-display");
 const secondaryDisplay = document.querySelector(".secondary-display");
 const deleteButton = document.querySelector(".delete");
 const allClearButton = document.querySelector(".all-clear");
+const clearPrimaryButton = document.querySelector(".clear-primary");
 const operators = Array.from(document.querySelectorAll(".operator"));
 const operatorStack = [];
 
@@ -103,6 +104,17 @@ function resetCalculator() {
 }
 
 allClearButton.addEventListener("click", resetCalculator);
+
+// CLEAR PRIMARY DISPLAY
+function clearPrimaryDisplay() {
+    const secondaryDisplayContent = secondaryDisplay.innerHTML;
+    const secondaryDisplayRight = secondaryDisplayContent.split(' ');
+
+    if(secondaryDisplayRight.length === 2)
+        primaryDisplay.innerHTML = '';
+}
+
+clearPrimaryButton.addEventListener("click", clearPrimaryDisplay);
 
 // SHOW RESULT
 function showResult() {
