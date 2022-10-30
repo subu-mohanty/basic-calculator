@@ -23,6 +23,12 @@ function updatePrimaryDisplayKey(keyDigit) {
     const primaryTextLength = primaryDisplay.innerHTML.length;
 
     if (primaryTextLength < 12) {
+        // PREPEND ZERO IF PRIMARY DISPLAY IS EMPTY AND DECIMAL POINT IS USED
+        if(keyDigit === '.' && primaryTextLength === 0) {
+            const zeroText = document.createTextNode(String(0));
+            primaryDisplay.append(zeroText);
+        }
+
         const digit = document.createTextNode(keyDigit);
         primaryDisplay.appendChild(digit);
     }
@@ -43,7 +49,7 @@ function updateSecondaryDisplay(operator) {
         return;
 
     if (secondaryDisplay.innerHTML === '' || secondaryDisplay.innerHTML.includes('=')) {
-        secondaryDisplay.innerHTML = `${primaryDisplay.innerHTML} ${operator}`;
+        secondaryDisplay.innerHTML = `${Number(primaryDisplay.innerHTML)} ${operator}`;
     } else {
         let secondaryValue = Number(secondaryDisplay.innerHTML.split(' ')[0]);
         operatorStack.push(secondaryDisplay.innerHTML.split(' ')[1]);
@@ -128,7 +134,7 @@ function showResult() {
     const rightOperand = Number(primaryDisplay.innerHTML);
     let result;
 
-    secondaryDisplay.innerHTML += ` ${primaryDisplay.innerHTML} =`;
+    secondaryDisplay.innerHTML += ` ${Number(primaryDisplay.innerHTML)} =`;
 
     switch (operator) {
         case '+':
