@@ -156,28 +156,103 @@ equals.addEventListener("click", showResult);
 
 // KEYDOWN EVENTS
 document.addEventListener("keydown", e => {
-    if (parseInt(e.key) >= 0 && parseInt(e.key) <= 9)
+    if (parseInt(e.key) >= 0 && parseInt(e.key) <= 9) {
+        // KEY LIGHT UP WHEN OPERATED WITH KEYBOARD //
+        if(e.key >= 0 && e.key <= 9) {
+            digits.forEach(digit => {
+                if(String(e.key) === digit.innerHTML) {
+                    digit.classList.add("light-up");
+                    
+                    setTimeout(() => {
+                        digit.classList.remove("light-up");
+                    }, 100);
+                }
+            });
+        }
+        // END KEY LIGHT UP //
+        
         updatePrimaryDisplayKey(e.key);
+    }
 
-    if (e.key === '.' && !primaryDisplay.innerHTML.includes('.'))
-        updatePrimaryDisplayKey(e.key);
+    if (e.key === '.') {
+        // KEY LIGHT UP WHEN OPERATED WITH KEYBOARD //
+        dot.classList.add("light-up");
+
+        setTimeout(() => {
+            dot.classList.remove("light-up");
+        }, 100);
+        // END KEY LIGHT UP //
+
+        if(!primaryDisplay.innerHTML.includes('.'))
+            updatePrimaryDisplayKey(e.key);
+    }
 
 
     switch (e.key) {
         case "Backspace":
+            // KEY LIGHT UP WHEN OPERATED WITH KEYBOARD //
+            deleteButton.classList.add("light-up");
+
+            setTimeout(() => {
+                deleteButton.classList.remove("light-up");
+            }, 100);
+            // END KEY LIGHT UP //
+
             deleteDigit();
             break;
         case "Escape":
+            // KEY LIGHT UP WHEN OPERATED WITH KEYBOARD //
+            allClearButton.classList.add("light-up");
+
+            setTimeout(() => {
+                allClearButton.classList.remove("light-up");
+            }, 100);
+            // END KEY LIGHT UP //
+
             resetCalculator();
             break;
         case '/':
+            operators[0].classList.add("light-up");
+
+            setTimeout(() => {
+                operators[0].classList.remove("light-up");
+            }, 100);
+            updateSecondaryDisplay(e.key);
+            break;
         case '*':
+            operators[1].classList.add("light-up");
+
+            setTimeout(() => {
+                operators[1].classList.remove("light-up");
+            }, 100);
+            updateSecondaryDisplay(e.key);
+            break;
         case '-':
+            operators[2].classList.add("light-up");
+
+            setTimeout(() => {
+                operators[2].classList.remove("light-up");
+            }, 100);
+            updateSecondaryDisplay(e.key);
+            break;
         case '+':
+            operators[3].classList.add("light-up");
+
+            setTimeout(() => {
+                operators[3].classList.remove("light-up");
+            }, 100);
             updateSecondaryDisplay(e.key);
             break;
         case '=':
         case "Enter":
+            // KEY LIGHT UP WHEN OPERATED WITH KEYBOARD //
+            equals.classList.add("equals-light-up");
+
+            setTimeout(() => {
+                equals.classList.remove("equals-light-up");
+            }, 100);
+            // END KEY LIGHT UP //
+
             showResult();
             break;
     }
